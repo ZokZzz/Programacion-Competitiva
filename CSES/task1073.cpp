@@ -16,10 +16,18 @@ int main() {
 
     for(int i = 0; i < n; i++) cin >> a[i];
 
-    vector<int
+    multiset<int> ans;
+
+    for (int x : a) {
+
+        auto it = ans.upper_bound(x);
+        if (it != ans.end()) ans.erase(it);
+        ans.insert(x);
+
+    }
 
 
-
+    cout << ans.size() << "\n";
 
     return 0;
 }

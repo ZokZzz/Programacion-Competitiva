@@ -9,52 +9,66 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(nullptr);
 
-    int n = 0, ac = 0;
+    int n = 0;
     cin >> n;
 
-    vector<pair<int,int>> a, ans, queries;
+    vector< pair<int, int> > a;
 
     for(int i = 0; i < n; i++) {
 
-        int c = 0, p = 0;
-        cin >> c >> p;
+       int c = 0, p = 0;
+       cin >> c >> p;
 
-        a.pb({p, c});
+       a.pb({p, c});
 
     }
 
-    ans = a;
+    sort(a.rbegin(), a.rend());
 
-    sort(ans.rbegin(), ans.rend());
+    /*for(int i = 0; i < a.size(); i++) {
 
-    set<int> b;
+        cout << a[i].first << " " << a[i].second << "\n";
 
-    int q = 0;
+    }*/
+
+    int q = 0, total = 0, cont = 0;
     cin >> q;
 
-    for(int i = 0; i < q; i++) {
+    vector<int> cap(q);
 
-        int aux = 0;
-        cin >> aux;
-        b.insert(aux);
+    for(int i = 0; i < q; i++) cin >> cap[i];
+
+    multiset<int> t;
+
+    for(int c : cap) t.insert(c);
+
+    for(auto i : a) {
+
+        auto it = t.lower_bound(i.second);
+
+        if(it != t.begin()){
+
+            cout << *it << " >= " << i.second << " ? \n";
+
+            if(*it >= i.second){
+
+            cout << "ENTRO\n";
+
+            total += i.first;
+            cont++;
+            t.erase(it);
+
+            }
+
+        }
+
 
     }
 
 
-
-    for(int i = 0; i < n; i++) {
-
-       auto it = b.upper_bound(ans[i].second);
-
-       if (it != b.begin()) {
-            --it;
-            cout << *it << "\n";
+    cout << cont << " " << total << "\n";
 
 
-       }
-
-
-    }
 
 
 
