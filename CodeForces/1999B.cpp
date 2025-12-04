@@ -4,6 +4,17 @@ using namespace std;
 #define pb push_back
 #define debug(x) cout<<#x<<": "<<x<<"\n"
 
+int f(int a, int b) {
+
+ if(a > b) return 1;
+
+ if (a < b) return -1;
+
+ return 0;
+
+
+}
+
 
 int main() {
     ios_base::sync_with_stdio(0);
@@ -17,14 +28,18 @@ int main() {
         int a = 0, b = 0, c = 0, d = 0;
         cin >> a >> b >> c >> d;
 
-        vector<int> sun = {a, b}, sla = {c, d};
+        int ans = 0;
 
-        sort(sun.begin(), sun.end()); sort(sla.begin(), sla.end());
+        if(f(a, c) + f(b, d) > 0) ans++;
+
+        if(f(a, d) + f(b, c) > 0) ans++;
+
+        if(f(b, c) + f(a, d) > 0) ans++;
+
+        if(f(b, d) + f(a, c) > 0) ans++;
 
 
-        if((sun[1] > sla[1] && sun[0] > sla[1])) cout << 4 << "\n";
-        else if ((sun[1] > sla[1] && sun[0] < sla[1])  || (sun[1] < sla[1] && sun[0] > sla[1])) cout << 2 << "\n";
-        else cout << 0 << "\n";
+        cout << ans << "\n";
 
 
 
