@@ -3,7 +3,8 @@ using namespace std;
 #define ll long long
 #define pb push_back
 #define debug(x) cout<<#x<<": "<<x<<"\n"
-
+#define all(x) (x).begin(), x.end()
+#define rall(x) (x).rbegin(), x.rend()
 
 
 int main() {
@@ -18,55 +19,44 @@ int main() {
         int n = 0;
         cin >> n;
 
-        char cur = ' ';
-        cin >> cur;
-
         string s;
         cin >> s;
 
+        int c = 0;
 
-        if(cur == 'g') {
+        for(int i = 0; i < n; i++) if(s[i] == '1') c++;
 
+        if(c == n) {
             cout << 0 << "\n";
             continue;
 
         }
 
-
-        vector<int> green;
-
         int ans = 0, current = 0;
-
-        bool f = false;
 
         for(int i = 0; i < 2 * n; i++){
 
-          if(f) current++;
+           if(s[i % n] == '0'){
 
-          if(s[i % n] == cur) f = true;
+                current ++;
+           } else {
 
-          if(s[i % n] == 'g') {
+            ans = max(current, ans); current = 0;
 
-            f = false;
-            ans = max(current, ans);
-            current = 0;
+           }
 
-
-          }
 
 
         }
 
 
-
-        cout << ans  << "\n";
-
+        cout << ans << "\n";
 
     }
 
 
+
+
     return 0;
 }
-
-
 
