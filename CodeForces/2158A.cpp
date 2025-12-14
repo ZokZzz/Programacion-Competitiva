@@ -12,12 +12,28 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(nullptr);
 
-    long long n, ans = 0;
-    cin >> n;
+    int t = 0;
+    cin >> t;
 
-    cout << (n * (n + 1) * (n - 1) / 6 ) + n << "\n";
+    while(t-->0){
+
+        int n = 0, y = 0, r = 0;
+        cin >> n >> y >> r;
+
+        y = y/2;
+
+        int total = y + r;
+
+        if(total <= n) cout << total << "\n";
+        else cout << n << "\n";
+
+
+
+
+    }
 
 
     return 0;
 }
+
 
