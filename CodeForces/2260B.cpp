@@ -39,31 +39,27 @@ using namespace std;
 #define memfull(x, y) memset(x, y, sizeof(x))
 
 
+
 void tc(){
 
-    int n = 0;
-    cin >> n;
+    ll x = 0, y = 0, k = 0;
+    cin >> x >> y >> k;
 
-    vll cnt(1e5 + 7, 0);
+    ll ans = 0, c = 0;
 
-    vll a(n); for(int i = 0; i < n; i++){
+    ll d = y - x;
 
-        cin >> a[i];
-        cnt[a[i]]++;
+    while(c < k && x + c <= d){
+
+        ans += d % (x + c);
+        c++;
 
     }
 
-    ll N = *max_element(all(a));
-
-    vll f(1e5 + 7, 0);
-
-    f[1] = cnt[1];
-
-    for(ll i = 2; i <= N; i++) f[i] = max(f[i - 1], f[i - 2] + cnt[i] * i);
-
-    ll ans = f[N];
+    ans += (k - c) * d;
 
     cout << ans << "\n";
+
 
 }
 
@@ -72,7 +68,7 @@ signed main(){
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while(t-->0){
         tc();
     }

@@ -47,9 +47,9 @@ void tc(){
    vi a(n);
    for(int i = 0; i < n; i++) cin >> a[i];
 
-   int ans = 1;
+   ll ans = 1;
 
-   int ci = 0, c4 = 0;
+   ll ci = 0, c4 = 0, cq = 0;
 
    vi f(*max_element(all(a)) + 1, 0);
 
@@ -57,24 +57,42 @@ void tc(){
 
         if(a[i] % 2) ci++;
 
-        if(a[i] % 4 == 0) c4++;
-
         f[a[i]]++;
+
+        if(a[i] % 4 == 0) cq++;
 
    }
 
-   int cm = *max_element(all(f));
+   if(n - ci > 0){
+   
+    vi even;
 
-   ans = max(ans, max(ci, max(c4, cm)));
+    for(int i = 0; i < n; i++) if(a[i] % 2 == 0) even.pb(a[i]);
+
+    sort(all(even));
+
+        for(int i = 0; i < even.size() - 1; i++){
+
+            if((a[i + 1] - a[i]) % 4 == 0) c4++;
+
+        }
+
+        if(c4 > 0) c4++;
+   }
+
+
+   ll cm = *max_element(all(f));
+
+   ans = max(ans, max(ci, max(c4, max(cq, cm))));
 
    cout << ans << "\n";
 
 }
 
 signed main(){
-    /*ios_base::sync_with_stdio(false);
+    ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    cout.tie(0);*/
+    cout.tie(0);
     int t = 1;
     cin >> t;
     while(t-->0){

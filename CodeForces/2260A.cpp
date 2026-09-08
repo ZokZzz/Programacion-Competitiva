@@ -41,29 +41,24 @@ using namespace std;
 
 void tc(){
 
-    int n = 0;
-    cin >> n;
+  int n = 0;
+  cin >> n;
 
-    vll cnt(1e5 + 7, 0);
+  vi a(n); for(int i = 0; i < n; i++) cin >> a[i];
 
-    vll a(n); for(int i = 0; i < n; i++){
+  int c = 0; for(int i = 0; i < n; i++) if(a[i] == 0) c++;
 
-        cin >> a[i];
-        cnt[a[i]]++;
+  int ans = 2;
 
-    }
+  if(c >= 2){
 
-    ll N = *max_element(all(a));
+        if(a[0] == 0) ans--;
+        if(a[n - 1] == 0) ans--;
 
-    vll f(1e5 + 7, 0);
+        cout << ans << "\n";
 
-    f[1] = cnt[1];
 
-    for(ll i = 2; i <= N; i++) f[i] = max(f[i - 1], f[i - 2] + cnt[i] * i);
-
-    ll ans = f[N];
-
-    cout << ans << "\n";
+  } else cout << -1 << "\n";
 
 }
 
@@ -72,7 +67,7 @@ signed main(){
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while(t-->0){
         tc();
     }
